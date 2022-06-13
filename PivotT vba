@@ -1,0 +1,59 @@
+Sub Macro5()
+'
+' Macro5 Macro
+'
+
+'
+    Range("G3:G23").Select
+    Selection.ClearContents
+    Range("A2:D7").Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Range("H1048261").Select
+    ActiveWindow.ScrollRow = 1047023
+    ActiveWindow.ScrollRow = 381564
+    ActiveWindow.ScrollRow = 1
+    Range("A2:D9").Select
+    Range(Selection, Selection.End(xlUp)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Application.CutCopyMode = False
+    Sheets.Add
+    ActiveWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:= _
+        "Case2-Data!R2C1:R29566C4", Version:=7).CreatePivotTable TableDestination:= _
+        "Sheet2!R3C1", TableName:="PivotTable4", DefaultVersion:=7
+    Sheets("Sheet2").Select
+    Cells(3, 1).Select
+    With ActiveSheet.PivotTables("PivotTable4").PivotFields("Weight (%)")
+        .Orientation = xlRowField
+        .Position = 1
+    End With
+    ActiveSheet.PivotTables("PivotTable4").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable4").PivotFields("Countries/Territories"), _
+        "Count of Countries/Territories", xlCount
+    ActiveSheet.PivotTables("PivotTable4").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable4").PivotFields("Date"), "Count of Date", xlCount
+    With ActiveSheet.PivotTables("PivotTable4").PivotFields("Count of Date")
+        .Orientation = xlColumnField
+        .Position = 2
+    End With
+    ActiveSheet.PivotTables("PivotTable4").AddDataField ActiveSheet.PivotTables( _
+        "PivotTable4").PivotFields("Weight (%)"), "Sum of Weight (%)", xlSum
+    With ActiveSheet.PivotTables("PivotTable4").PivotFields( _
+        "Count of Countries/Territories")
+        .Orientation = xlRowField
+        .Position = 1
+    End With
+End Sub
